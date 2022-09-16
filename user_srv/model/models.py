@@ -8,7 +8,7 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, index=True)
     mobile = Column(String(11), unique=True, nullable=False)
-    password = Column(String(100))
+    _password = Column(String(100), name="password")
     nick_name = Column(String(20), nullable=True)
     head_url = Column(String(200), nullable=True)
     birthday = Column(Date, nullable=True)
@@ -18,8 +18,12 @@ class User(Base):
     role = Column(Integer)
 
     @property
-    def passwd(self, password):
-        self.password = pbkdf2_sha256.hash(password)
+    def password(self):
+        return self._password
+    
+    @password.setter
+    def password(self, password):
+        self._password = pbkdf2_sha256.hash(password)
     
     def verify_passwd(self, password):
-        return pbkdf2_sha256.verify(password, self.password)
+        return pbkdf2_sha256.verify(password, self._password)

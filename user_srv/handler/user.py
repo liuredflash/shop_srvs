@@ -62,3 +62,20 @@ class UserServicer(user_pb2_grpc.UserServicer):
             context.set_details("用户不存在")
             return user_pb2.UserInfoResponse()
         return self.convert_user_to_userinforesponse(user_list[0])
+    
+    @logger.catch
+    def CreateUser(self, request, context):
+        logger.info(f"=================CreateUser======{request.Mobile}========")
+        exist_user = Session().query(User).filter(User.mobile == request.Mobile).count()
+        if exist_user:
+            context.set_code(grpc.StatusCode.ALREADY_EXISTS)
+            context.set_details("用户已存在")
+            return user_pb2.UserInfoResponse()
+        user = User()
+        user.nick_name = request.nickName
+        user.mobile = request.Mobile
+        user.password = request.passWord
+        s = Session()
+        s.add(user)
+        s.commit()
+        return self.convert_user_to_userinforesponse(user)

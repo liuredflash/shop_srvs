@@ -6,7 +6,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  # 把导入路径添加到系统路径上，才能找到同层级下不同文件夹下的proto
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from proto.user_pb2 import PageInfo, IdRequest, MobileRequest
+from proto.user_pb2 import PageInfo, IdRequest, MobileRequest, CreateUserInfo
 from proto.user_pb2_grpc import UserStub
 
 class UserTest:
@@ -28,8 +28,19 @@ class UserTest:
         print(rsp.nickName)
         print(rsp.mobile)
         print(rsp.passWord)
+
+    def create_user_info(self):
+        rsp = self.stub.CreateUser(CreateUserInfo(
+            nickName="lll",
+            Mobile="13113131313",
+            passWord="54321"
+        ))
+        print(rsp.nickName)
+        print(rsp.mobile)
+        print(rsp.passWord)
 if __name__ == "__main__":
     user = UserTest()
     # user.user_list()
     # user.user_info_by_id()
-    user.user_info_by_mobile()
+    # user.user_info_by_mobile()
+    user.create_user_info()
