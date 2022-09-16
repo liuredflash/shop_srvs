@@ -15,12 +15,12 @@ class UserServicer(user_pb2_grpc.UserServicer):
         user_info_response.mobile  = user.mobile
         if user.role:
             user_info_response.role = user.role
-            if user.nick_name:
-                user_info_response.nickName = user.nick_name
-            if user.gender:
-                user_info_response.gender = user.gender
-            if user.birthday:
-                user_info_response.birthDay = int(time.mktime(user.birthday.timetuple()))
+        if user.nick_name:
+            user_info_response.nickName = user.nick_name
+        if user.gender:
+            user_info_response.gender = user.gender
+        if user.birthday:
+            user_info_response.birthDay = int(time.mktime(user.birthday.timetuple()))
         return user_info_response
 
 
@@ -40,10 +40,22 @@ class UserServicer(user_pb2_grpc.UserServicer):
         for user in users:
             rsp.data.append(self.convert_user_to_userinforesponse(user))
         return rsp
+
     @logger.catch
     def GetUserById(self, request, context):
         logger.info(f"===GetUserById===request.id {request.id}===")
         users = Session().query(User).filter(User.id==request.id)
+        user_list = users.all()
+        if not user_list:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("用户不存在")
+            return user_pb2.UserInfoResponse()
+        return self.convert_user_to_userinforesponse(user_list[0])
+
+    @logger.catch
+    def GetUserByMobile(self, request, context):
+        logger.info(f"===GetUserByMobile===request.mobile {request.mobile}===")
+        users = Session().query(User).filter(User.mobile==request.mobile)
         user_list = users.all()
         if not user_list:
             context.set_code(grpc.StatusCode.NOT_FOUND)
