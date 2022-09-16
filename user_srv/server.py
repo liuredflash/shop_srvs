@@ -14,16 +14,16 @@ def on_exit(signo, frame):
     logger.info(f"进程中断 {signo}")
     sys.exit(0)
 
-def init_server():
+def init_server(ip, port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     user_pb2_grpc.add_UserServicer_to_server(UserServicer(), server)
-    server.add_insecure_port('[::]:3001')
+    server.add_insecure_port(f'{ip}:{port}')
 
     # 主进程退出信号监听
     signal.signal(signal.SIGINT, on_exit) # ctrl+c
     signal.signal(signal.SIGTERM, on_exit) # kill 进程号
     server.start()
-    logger.info("========start_grpc_server==========")
+    logger.info(f"========start_grpc_server  {ip}:{port}==========")
     server.wait_for_termination()
 
 if __name__ == "__main__":

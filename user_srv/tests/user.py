@@ -18,9 +18,6 @@ class UserTest:
         rsp = self.stub.GetUserList(PageInfo(pn=2))
         print(rsp.total)
         print(rsp.data)
-        for user in rsp.data:
-            print(user.id, user.mobile)
-
 if __name__ == "__main__":
     user = UserTest()
     user.user_list()
