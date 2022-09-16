@@ -2,11 +2,12 @@ import grpc
 
 import sys
 import os
+import time
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  # 把导入路径添加到系统路径上，才能找到同层级下不同文件夹下的proto
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from proto.user_pb2 import PageInfo, IdRequest, MobileRequest, CreateUserInfo
+from proto.user_pb2 import PageInfo, IdRequest, MobileRequest, CreateUserInfo, UpdateUserInfo
 from proto.user_pb2_grpc import UserStub
 
 class UserTest:
@@ -38,9 +39,20 @@ class UserTest:
         print(rsp.nickName)
         print(rsp.mobile)
         print(rsp.passWord)
+    
+    def update_user(self):
+        rsp = self.stub.UpdateUser(UpdateUserInfo(
+            id=1,
+            nickName="lj",
+            gengder="male",
+            birthDay=int(time.time())
+
+        ))
+        print(rsp)
 if __name__ == "__main__":
     user = UserTest()
     # user.user_list()
     # user.user_info_by_id()
     # user.user_info_by_mobile()
-    user.create_user_info()
+    # user.create_user_info()
+    user.update_user()

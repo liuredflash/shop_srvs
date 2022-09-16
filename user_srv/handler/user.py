@@ -1,8 +1,10 @@
 import time
+from datetime import date
 import grpc
 from loguru import logger
 from model.models import User
 from db import Session
+from google.protobuf import empty_pb2
 
 from proto import user_pb2, user_pb2_grpc
 
@@ -79,3 +81,21 @@ class UserServicer(user_pb2_grpc.UserServicer):
         s.add(user)
         s.commit()
         return self.convert_user_to_userinforesponse(user)
+    
+    @logger.catch
+    def UpdateUser(self, request, context):
+        logger.info(f"===UpdateUser===request.id {request.id}===")
+        users = Session().query(User).filter(User.id==request.id)
+        user_list = users.all()
+        if not user_list:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("用户不存在")
+            return user_pb2.UserInfoResponse()
+        user = user_list[0]
+        user.nick_name = request.nickName
+        user.gender = request.gengder
+        user.birthday = date.fromtimestamp(request.birthDay)
+        s = Session()
+        s.add(user)
+        s.commit()
+        return empty_pb2.Empty()
