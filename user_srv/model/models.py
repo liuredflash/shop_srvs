@@ -1,6 +1,7 @@
 from tabnanny import verbose
 from sqlalchemy import Column
 from sqlalchemy import String, Integer, Date, Text
+from passlib.hash import pbkdf2_sha256
 from db import Base
 
 class User(Base):
@@ -15,3 +16,10 @@ class User(Base):
     desc = Column(Text, nullable=True)
     gender = Column(String(20), nullable=True)
     role = Column(Integer)
+
+    @property
+    def passwd(self, password):
+        self.password = pbkdf2_sha256.hash(password)
+    
+    def verify_passwd(self, password):
+        return pbkdf2_sha256.verify(password, self.password)
