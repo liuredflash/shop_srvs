@@ -3,6 +3,7 @@ from datetime import date
 import grpc
 from loguru import logger
 from model.models import User
+from passlib.hash import pbkdf2_sha256
 from db import Session
 from google.protobuf import empty_pb2
 
@@ -99,3 +100,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         s.add(user)
         s.commit()
         return empty_pb2.Empty()
+
+    @logger.catch
+    def CheckPassWord(self, request, context):
+        return user_pb2.CheckResponse(success=pbkdf2_sha256.verify(request.password, request.encryptedPassword))
