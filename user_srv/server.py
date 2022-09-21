@@ -3,7 +3,6 @@ import signal
 import sys
 
 from concurrent import futures
-import grpc
 
 from proto import user_pb2, user_pb2_grpc
 from handler.user import UserServicer
