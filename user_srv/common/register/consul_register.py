@@ -25,7 +25,7 @@ class ConsulRegister(BaseConsul):
             address=service_address,
             port=int(service_port),
             tags=tags,
-            # check=check TODPO需要添加grpc健康检查代码
+            check=check
         )
         return success
     

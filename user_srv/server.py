@@ -8,6 +8,8 @@ import grpc
 from proto import user_pb2, user_pb2_grpc
 from handler.user import UserServicer
 from common.register.consul_register import ConsulRegister
+from common.grpc_health.v1 import health_pb2, health_pb2_grpc
+from common.grpc_health.v1 import health
 from settings import settings
 
 
@@ -18,7 +20,9 @@ def on_exit(signo, frame):
 def init_server(ip, port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     user_pb2_grpc.add_UserServicer_to_server(UserServicer(), server)
-    # 注册健康检
+    # 注册健康检查
+    health_pb2_grpc.add_HealthServicer_to_server(health.HealthServicer(), server)
+
     server.add_insecure_port(f'{ip}:{port}')
 
     # 主进程退出信号监听
