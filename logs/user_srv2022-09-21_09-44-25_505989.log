@@ -1,0 +1,4 @@
+2022-09-21 09:44:25.610 | INFO     | server:init_server:32 - ========start_grpc_server  127.0.0.1:3001==========
+2022-09-21 09:44:25.611 | INFO     | server:init_server:33 - ====注册服务开始
+2022-09-21 09:44:25.626 | INFO     | server:init_server:40 - 服务注册成功
+2022-09-21 09:44:28.772 | INFO     | server:on_exit:17 - 进程中断 2

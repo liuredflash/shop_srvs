@@ -1,0 +1,3 @@
+2022-10-02 12:47:09.580 | INFO     | server:init_server:44 - ========start_grpc_server  172.21.49.96:38375==========
+2022-10-02 12:47:09.580 | INFO     | server:init_server:45 - ====注册服务开始
+2022-10-02 12:47:09.594 | INFO     | server:init_server:52 - 服务注册成功

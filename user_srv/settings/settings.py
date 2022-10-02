@@ -1,6 +1,6 @@
 DB_SETTINGS = "mysql+pymysql://root:123456@127.0.0.1:3306/user_srv"
 
-CONSUL_HOST = "172.22.80.198"
+CONSUL_HOST = "172.21.49.96"
 CONSUL_PORT = "8500"
 
 #user_srv

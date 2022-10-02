@@ -16,14 +16,14 @@ def main():
         "--ip",
         nargs="?",
         type=str,
-        default="172.22.80.198",
+        default="172.21.49.96",
         help="binding ip"
     )
     parser.add_argument(
         "--port",
         nargs="?",
         type=str,
-        default="3001",
+        default="0",
         help="binding port"
     )
     args = parser.parse_args()
