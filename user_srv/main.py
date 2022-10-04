@@ -16,7 +16,7 @@ def main():
         "--ip",
         nargs="?",
         type=str,
-        default="172.21.49.96",
+        default="172.24.127.154",
         help="binding ip"
     )
     parser.add_argument(
@@ -30,6 +30,8 @@ def main():
     init_log()
     init_db(settings.DB_SETTINGS)
     init_server(args.ip, args.port)
+    # settings.client.add_config_watcher(settings.NACOS["data_id"], settings.NACOS["group"], settings.on_update_config) 
+    # 不能放在这里，因为程序在 init_server中已经停下监听
 
 
 def config_updated():

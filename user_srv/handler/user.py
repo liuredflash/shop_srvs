@@ -28,6 +28,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
 
 
     def GetUserList(self, request: user_pb2.PageInfo, context):
+        logger.info("[python 用户列表]")
         rsp = user_pb2.UserListResponse()
         users = Session().query(User)
         rsp.total = users.count()
