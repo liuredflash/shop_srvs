@@ -1,0 +1,4 @@
+2022-10-04 10:43:58.220 | INFO     | server:init_server:44 - ========start_grpc_server  172.24.127.154:36071==========
+2022-10-04 10:43:58.222 | INFO     | server:init_server:45 - ====注册服务开始
+2022-10-04 10:43:58.235 | INFO     | server:init_server:52 - 服务注册成功
+2022-10-04 10:44:04.629 | INFO     | settings.settings:on_update_config:69 - ====nacos配置更新======
