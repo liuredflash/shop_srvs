@@ -9,7 +9,7 @@ from loguru import logger
 
 NACOS = {
     "SERVER_ADDRESSES": "127.0.0.1:8848",
-    "NAMESPACE": "dcd6ac6f-9778-47eb-9a5d-b943aa71f673",
+    "NAMESPACE": "e5e64c36-6fde-4c2c-9fc0-d931bf06327a",
     "data_id": "user-srv",
     "group": "DEFAULT_GROUP"
 }
