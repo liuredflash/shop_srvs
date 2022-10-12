@@ -1,0 +1,7 @@
+2022-10-04 10:44:53.993 | INFO     | server:init_server:44 - ========start_grpc_server  172.24.127.154:50703==========
+2022-10-04 10:44:53.994 | INFO     | server:init_server:45 - ====注册服务开始
+2022-10-04 10:44:54.006 | INFO     | server:init_server:52 - 服务注册成功
+2022-10-04 10:44:59.359 | INFO     | settings.settings:on_update_config:69 - ====nacos配置更新======
+2022-10-04 10:46:20.161 | INFO     | server:on_exit:21 - ===注销服务:<frame at 0x7fbe0400b600, file '/usr/lib/python3.10/threading.py', line 324, code wait>======
+2022-10-04 10:46:20.169 | INFO     | server:on_exit:24 - ===注销成功======
+2022-10-04 10:46:20.170 | INFO     | server:on_exit:25 - 进程中断 32e742ca-43c9-11ed-9566-00155d35fcbf

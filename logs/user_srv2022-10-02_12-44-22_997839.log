@@ -1,0 +1,5 @@
+2022-10-02 12:44:23.058 | INFO     | server:init_server:44 - ========start_grpc_server  172.21.49.96:43699==========
+2022-10-02 12:44:23.059 | INFO     | server:init_server:45 - ====注册服务开始
+2022-10-02 12:45:48.428 | INFO     | server:on_exit:21 - ===注销服务:<frame at 0x5642b97477b0, file '/home/liujun/.venvs/mxshop_srv_venv/lib/python3.10/site-packages/urllib3/util/connection.py', line 85, code create_connection>======
+2022-10-02 12:45:49.514 | INFO     | server:on_exit:21 - ===注销服务:<frame at 0x5642b974b3e0, file '/home/liujun/.venvs/mxshop_srv_venv/lib/python3.10/site-packages/urllib3/util/connection.py', line 85, code create_connection>======
+2022-10-02 12:45:49.916 | INFO     | server:on_exit:21 - ===注销服务:<frame at 0x5642b974d270, file '/home/liujun/.venvs/mxshop_srv_venv/lib/python3.10/site-packages/urllib3/util/connection.py', line 85, code create_connection>======
