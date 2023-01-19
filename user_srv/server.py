@@ -23,7 +23,7 @@ def on_exit(signo, frame, serivce_id):
     register.deregister(serivce_id)
     logger.info(f"===注销成功======")
     logger.info(f"进程中断 {signo}")
-    sys.exit(0)
+    sys.exit(0) # 退出服务程序
 
 def init_server(ip, port):
     if port == "0":

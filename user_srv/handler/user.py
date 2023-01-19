@@ -45,7 +45,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
             rsp.data.append(self.convert_user_to_userinforesponse(user))
         return rsp
 
-    @logger.catch
+    @logger.catch  # 抛出异常时，能打印日志
     def GetUserById(self, request, context):
         logger.info(f"===GetUserById===request.id {request.id}===")
         users = Session().query(User).filter(User.id==request.id)
