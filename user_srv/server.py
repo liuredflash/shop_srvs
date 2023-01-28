@@ -17,8 +17,7 @@ from settings import settings
 from utils import utils
 
 
-def on_exit(signo, frame, serivce_id):
-    logger.info(f"===注销服务:{serivce_id}======")
+def on_exit(serivce_id, signo, frame):
     register = ConsulRegister(settings.CONSUL_HOST, settings.CONSUL_PORT)
     register.deregister(serivce_id)
     logger.info(f"===注销成功======")
