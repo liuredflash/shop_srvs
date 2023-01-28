@@ -16,7 +16,7 @@ def main():
         "--ip",
         nargs="?",
         type=str,
-        default="192.168.68.106",
+        default="192.168.2.2",
         help="binding ip"
     )
     parser.add_argument(
